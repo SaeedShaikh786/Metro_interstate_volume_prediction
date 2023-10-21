@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Metro interstate traffic volume prediction</title>
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+</head>
+<body>
+<div class="main">
+    <div class="form">
+        <div class="title"><h1>Metro Volume Predictor</h1></div><br>
+        <div class="title">Enter the details:</div><br>
+        <form id="form" action="{{ url_for('predict') }}" method="POST">
+            <div class="user-details">
+                <div class="input">
+                    <label class="input-name">Holiday</label>
+                    <select name="holiday" id="holiday">
+                        <option value="no">NO</option>
+                        <option value="yes">YES</option>
+                    </select>
+                </div>
+                <br><br>
+
+                <div class="input">
+                    <label class="input-name">Weather</label>
+                    <select name="weather_main" id="weather_main">
+                        <option value="Clouds">Clouds</option>
+                        <option value="Clear">Clear</option>
+                        <option value="Mist">Mist</option>
+                        <option value="Rain">Rainy</option>
+                        <option value="Snow">Snow</option>
+                        <option value="Drizzle">Drizzle</option>
+                        <option value="Thunderstorm">Thunderstorm</option>
+                        <option value="Haze">Haze</option>
+                        <option value="Fog">Fog</option>
+                        <option value="Smoke">Smoke</option>
+                        <option value="Squall">Squall</option>
+                    </select>
+                </div>
+                <br><br>
+
+                <div class="input">
+                    <label class="input-name">Day of the week</label>
+                    <select name="weekday" id="weekday">
+                        <option value='1'>Monday</option>
+                        <option value='2'>Tuesday</option>
+                        <option value='3'>Wednesday</option>
+                        <option value='4'>Thursday</option>
+                        <option value="5">Friday</option>
+                        <option value="6">Saturday</option>
+                        <option value="7">Sunday</option>
+                    </select>
+                </div>
+                <br><br>
+
+                <div class="input">
+                    <label class="input-name">Temperature (k) </label>
+                    <input type="number" name="temp" id="temp">
+                </div>
+                <br><br>
+
+                <div class="input">
+                    <label class="input-name">Cloud Cover (%)</label>
+                    <input type="number" name="clouds_all" id="clouds_all">
+                </div>
+                <br><br>
+
+                <div class="input">
+                    <label class="input-name">Hour (24 clock)</label>
+                    <input type="number" name="hour" id="hour">
+                </div>
+                <br><br>
+
+                <div class="button">
+                <input type="submit" value="predict" style="font-size: larger; font-weight: bold;color: black;">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="prediction" style="color: rgb(108, 115, 211); font-weight: bold; font-size: xx-large; letter-spacing: 2px; border: 2px solid White; border-radius: 5px; margin: 5px; margin-left: 50px; padding: 6px; text-align: center; box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.5);">
+    {{results}}
+</div>
+</body>
+</html>

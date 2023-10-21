@@ -54,7 +54,6 @@ class ModelTrainer:
             save_obj(file_path=self.model_path.model_trainer_path,obj=best_model)
             logging.info(f"model saved to {self.model_path.model_trainer_path}")
 
-            #params={"n_estimators":150,"criterion":"friedman_mse","max_features":"log2"}
 
             with mlflow.start_run():
                 prediction=best_model.predict(X_test)
@@ -77,7 +76,7 @@ class ModelTrainer:
                 signature = infer_signature(X_train, predictions)
                 ## For Remote server only(DAGShub)
 
-                #remote_server_uri="https://dagshub.com/krishnaik06/mlflowexperiments.mlflow"
+                #remote_server_uri="https://dagshub.com/saeedshaikh313/Metro_interstate_volume_prediction.mlflow"
                 #mlflow.set_tracking_uri(remote_server_uri)
 
                 tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
@@ -94,23 +93,8 @@ class ModelTrainer:
 
                     mlflow.sklearn.log_model(best_model,"Model")
             
-            #Params={"n_estimators":150,"criterion":"friedman_mse","max_features":"log2","oob_score":True}
-            #B_model=RandomForestRegressor(Params)
-
-            #save_obj()                             
+                                      
         except Exception as e:
 
             raise CustomException(e,sys)
     
-
-if __name__=="__main__":
-    
-    try:
-        obj=DataIngestion()
-        train_path,test_path=obj.InitiateDataIngestion()
-        tf_obj=DataTransformation()
-        train_arr,test_arr=tf_obj.InitiateDataTransformation(train_path=train_path,test_path=test_path)
-        model_obj=ModelTrainer()
-        model_obj.InitiateModeltraining(train_arr=train_arr,test_arr=test_arr)
-    except Exception as e:
-        raise CustomException(e,sys)      

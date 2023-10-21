@@ -6,3 +6,4 @@ dist/
 build/
 mlruns/
 metro_interstate.egg-info/
+model.py 
