@@ -2,7 +2,8 @@ from flask import Flask,request,render_template
 #import flask_cors
 from src.pipeline.prediction_pipeline import CustomeData,PredictionPipeline
 
-app =Flask(__name__)
+application = Flask(__name__)
+app = application
 app.static_folder="static"
 app.template_folder="static/templates"
 
